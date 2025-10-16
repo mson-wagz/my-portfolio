@@ -1,20 +1,7 @@
 "use client"
 
 import  React from "react"
-import resume from '../src/assets/resume.pdf';
-import hero from '../src/assets/hero.png'
 import emailjs from '@emailjs/browser';
-import AcademmiHub from '../src/assets/AcademmiHub.png'
-import Tryve from '../src/assets/Tryve.png'
-import Novelnest from '../src/assets/Novelnest.png'
-import EduLearn from '../src/assets/EduLearn.png'
-import AfyaBuddy from '../src/assets/AfyaBuddy.png'
-import MwanafunziHub from '../src/assets/MwanafunziHub.png'
-import Tiklish from '../src/assets/Tiklish.png'
-
-
-
-
 
 import { useState, useEffect, useRef } from "react"
 // eslint-disable-next-line no-unused-vars
@@ -194,7 +181,7 @@ export default function Portfolio() {
                   >
                     
                     <a
-                        href={resume}
+                        href="../public/resume.pdf"
                         download="Abigail_Wagura_Resume.pdf"
                         className="px-4 py-4 w-60 font-medium bg-brand text-white rounded-lg hover:bg-brand/90 transition"
                         >
@@ -231,7 +218,7 @@ export default function Portfolio() {
                 >
                   <div className="relative w-full aspect-square max-w-md mx-auto">
                     <img
-                      src={hero}
+                      src="../public/hero.png"
                       alt="Abigail Wagura"
                       width={500}
                       height={500}
@@ -453,7 +440,7 @@ export default function Portfolio() {
                   title: "Novel Nest",
                   description:
                     "A module web design for book lovers featuring a clean, modern interface with intuitive navigation.",
-                    img:Novelnest,
+                    img:"../public/Novelnest.png",
                     link:"https://www.figma.com/design/RhrJeDqmiLx0Yna6EX6etR/NOVEL-APP?node-id=0-1&t=szf0ldSPlAFWX4m4-1",
                     category:"ui-ux"
                     
@@ -462,7 +449,7 @@ export default function Portfolio() {
                   title: "E-learning Platform",
                   description:
                     "A comprehensive design for an e-learning platform with a focus on user experience and accessibility.",
-                    img:EduLearn,
+                    img:"../public/Edulearn.png",
                     link:"https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1",
                     category:"ui-ux"
                 
@@ -471,7 +458,7 @@ export default function Portfolio() {
                   title: "Tryve",
                   description:
                     "A seamless platform that connects therapists and patients for accessible, secure, and personalized mental health support.",
-                    img:Tryve,
+                    img:"../public/Tryve.png",
                     link:"https://www.figma.com/design/gkF6S66QSBjdw4g4GOHdbP/Tyrve?node-id=238-314&t=KROz3Yv5G2k99zMR-1",
                     category:"ui-ux"
                 //   image: "/mobile-education-app.jpg",
@@ -480,7 +467,7 @@ export default function Portfolio() {
                   title: "Academia/Uni Case Study",
                   description:
                     "A detailed case study on enhancing the academic platform user experience and engagement.",
-                    img:AcademmiHub,
+                    img:"../public/AcademmiHub.png",
                     link:"https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1",
                     category:"ui-ux"
                     
@@ -489,7 +476,7 @@ export default function Portfolio() {
                   title: "Tik-lish",
                   description:
                     "Tik-lish is a peer-to-peer ticketing app that lets students securely resell and buy event tickets through instant paywall links—eliminating the chaos of massive group chats and endless DMs.",
-                    img:Tiklish,
+                    img:"../public/Tiklish.png",
                     link:"https://www.figma.com/design/9HjUd934rs9vrrcjo1Blsk/TICKLISH?node-id=44-11&p=f&t=MqwwkKcFCLWMqsVM-0",
                     category:"ui-ux"
                     
@@ -499,7 +486,7 @@ export default function Portfolio() {
                   title: "AfyaBuddy",
                   description:
                     "AfyaBuddy is an AI-powered first aid assistant that provides quick, step-by-step guidance to help users respond effectively during medical emergencies.",
-                    img:AfyaBuddy,
+                    img:"../public/AfyaBuddy.png",
                     link:"https://celadon-mousse-1866c3.netlify.app/",
                     category:"web"
                 
@@ -508,7 +495,7 @@ export default function Portfolio() {
                   title: "MwanafunziHub",
                   description:
                     "MwanafunziHub is a comprehensive student portal designed to streamline academic management, enhance communication, and provide valuable resources for students.",
-                    img:MwanafunziHub,
+                    img:"../public/MwanafunziHub.png",
                     link:"https://mwanafunzi-hub-r1uq.onrender.com/",
                     category:"web"
                 
