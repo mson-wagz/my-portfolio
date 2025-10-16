@@ -4,6 +4,16 @@ import  React from "react"
 import resume from '../src/assets/resume.pdf';
 import hero from '../src/assets/hero.png'
 import emailjs from '@emailjs/browser';
+import AcademmiHub from '../src/assets/AcademmiHub.png'
+import Tryve from '../src/assets/Tryve.png'
+import Novelnest from '../src/assets/Novelnest.png'
+import EduLearn from '../src/assets/EduLearn.png'
+import AfyaBuddy from '../src/assets/AfyaBuddy.png'
+import MwanafunziHub from '../src/assets/MwanafunziHub.png'
+import Tiklish from '../src/assets/Tiklish.png'
+
+
+
 
 
 import { useState, useEffect, useRef } from "react"
@@ -439,40 +449,71 @@ export default function Portfolio() {
             >
               {[
                 {
+                  //uiux
                   title: "Novel Nest",
                   description:
                     "A module web design for book lovers featuring a clean, modern interface with intuitive navigation.",
-                    img:"/src/assets/Novelnest.png",
-                    link:"https://www.figma.com/design/RhrJeDqmiLx0Yna6EX6etR/NOVEL-APP?node-id=0-1&t=szf0ldSPlAFWX4m4-1"
+                    img:Novelnest,
+                    link:"https://www.figma.com/design/RhrJeDqmiLx0Yna6EX6etR/NOVEL-APP?node-id=0-1&t=szf0ldSPlAFWX4m4-1",
+                    category:"ui-ux"
                     
                 },
                 {
                   title: "E-learning Platform",
                   description:
                     "A comprehensive design for an e-learning platform with a focus on user experience and accessibility.",
-                    img:"/src/assets/Edulearn.png",
-                    link:"https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1"
+                    img:EduLearn,
+                    link:"https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1",
+                    category:"ui-ux"
                 
                 },
                 {
                   title: "Tryve",
                   description:
                     "A seamless platform that connects therapists and patients for accessible, secure, and personalized mental health support.",
-                    img:"/src/assets/Tryve.png",
-                    link:"https://www.figma.com/design/gkF6S66QSBjdw4g4GOHdbP/Tyrve?node-id=238-314&t=KROz3Yv5G2k99zMR-1"
+                    img:Tryve,
+                    link:"https://www.figma.com/design/gkF6S66QSBjdw4g4GOHdbP/Tyrve?node-id=238-314&t=KROz3Yv5G2k99zMR-1",
+                    category:"ui-ux"
                 //   image: "/mobile-education-app.jpg",
                 },
                 {
                   title: "Academia/Uni Case Study",
                   description:
                     "A detailed case study on enhancing the academic platform user experience and engagement.",
-                    img:"/src/assets/AcademmiHub.png",
-                    link:"https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1"
+                    img:AcademmiHub,
+                    link:"https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1",
+                    category:"ui-ux"
                     
-
-                //   image: "/university-platform-design.jpg",
                 },
-              ].map((project, i) => (
+                {
+                  title: "Tik-lish",
+                  description:
+                    "Tik-lish is a peer-to-peer ticketing app that lets students securely resell and buy event tickets through instant paywall links—eliminating the chaos of massive group chats and endless DMs.",
+                    img:Tiklish,
+                    link:"https://www.figma.com/design/9HjUd934rs9vrrcjo1Blsk/TICKLISH?node-id=44-11&p=f&t=MqwwkKcFCLWMqsVM-0",
+                    category:"ui-ux"
+                    
+                },
+                //web apps
+                {
+                  title: "AfyaBuddy",
+                  description:
+                    "AfyaBuddy is an AI-powered first aid assistant that provides quick, step-by-step guidance to help users respond effectively during medical emergencies.",
+                    img:AfyaBuddy,
+                    link:"https://celadon-mousse-1866c3.netlify.app/",
+                    category:"web"
+                
+                },
+                {
+                  title: "MwanafunziHub",
+                  description:
+                    "MwanafunziHub is a comprehensive student portal designed to streamline academic management, enhance communication, and provide valuable resources for students.",
+                    img:MwanafunziHub,
+                    link:"https://mwanafunzi-hub-r1uq.onrender.com/",
+                    category:"web"
+                
+                },
+                ].filter(project => project.category === activeTab).map((project, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, scale: 0.9 }}
