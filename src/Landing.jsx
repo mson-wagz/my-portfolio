@@ -4,13 +4,13 @@ import  React from "react";
 // import hero from '..src/assets/hero.png'
 import hero from "./assets/hero.png"
 import emailjs from '@emailjs/browser';
-import AcademmiHub from '../src/assets/AcademmiHub.png'
-import Tryve from '../src/assets/Tryve.png'
-import Novelnest from '../src/assets/Novelnest.png'
-import EduLearn from '../src/assets/EduLearn.png'
-import AfyaBuddy from '../src/assets/AfyaBuddy.png'
-import MwanafunziHub from '../src/assets/MwanafunziHub.png'
-import Tiklish from '../src/assets/Tiklish.png'
+import AcademmiHub from './assets/AcademmiHub.png'
+import Tryve from './assets/Tryve.png'
+import Novelnest from './assets/Novelnest.png'
+import EduLearn from './assets/Edulearn.png'
+import AfyaBuddy from './assets/AfyaBuddy.png'
+import MwanafunziHub from './assets/MwanafunziHub.png'
+import Tiklish from './assets/Tiklish.png'
 
 
 
