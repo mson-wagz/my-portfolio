@@ -2,6 +2,7 @@
 
 import  React from "react"
 import emailjs from '@emailjs/browser';
+import Edulearn from "../public/Edulearn.png"
 
 import { useState, useEffect, useRef } from "react"
 // eslint-disable-next-line no-unused-vars
@@ -449,7 +450,7 @@ export default function Portfolio() {
                   title: "E-learning Platform",
                   description:
                     "A comprehensive design for an e-learning platform with a focus on user experience and accessibility.",
-                    img:"../public/Edulearn.png",
+                    img:Edulearn,
                     link:"https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1",
                     category:"ui-ux"
                 
