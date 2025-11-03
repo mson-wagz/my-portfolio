@@ -5,16 +5,12 @@ import  React from "react";
 import hero from "./assets/hero.png"
 import emailjs from '@emailjs/browser';
 import AcademmiHub from './assets/AcademmiHub.png'
-import Tryve from './assets/Tryve.png'
+import Soulspace from './assets/Soulspace.png'
 import Novelnest from './assets/Novelnest.png'
 import EduLearn from './assets/Edulearn.png'
 import AfyaBuddy from './assets/AfyaBuddy.png'
 import MwanafunziHub from './assets/MwanafunziHub.png'
 import Tiklish from './assets/Tiklish.png'
-
-
-
-
 
 import { useState, useEffect, useRef } from "react"
 // eslint-disable-next-line no-unused-vars
@@ -22,7 +18,8 @@ import { motion,useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowRight, Linkedin, Github, Dribbble, Mail, CheckCircle, XCircle, Phone, Send } from "lucide-react"
+import { ArrowRight, Linkedin, Github, Dribbble, Mail, CheckCircle, XCircle, Phone, Send, Menu, X } from "lucide-react"
+import { Link } from "react-router-dom"
 
 
 export default function Portfolio() {
@@ -31,6 +28,7 @@ export default function Portfolio() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' or 'error'
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const aboutRef = useRef(null)
 
   const { scrollYProgress } = useScroll()
@@ -95,7 +93,7 @@ export default function Portfolio() {
     { Icon: Linkedin, href: "https://www.linkedin.com/in/abigail-wagura-2708a12a5/" },
     { Icon: Github, href: "https://github.com/mson-wagz" },
     { Icon: Dribbble, href: "https://dribbble.com/yourname" },
-    { Icon: Mail, href: "mailto:yourname@email.com" },
+    { Icon: Mail, href: "mailto:abigailwagura1@gmail.com" },
   ]
   
 
@@ -108,11 +106,13 @@ export default function Portfolio() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="fixed top-0 left-0 right-0 z-50 bg-[#3A3A3A]/95 backdrop-blur-md border-b border-white/10"
       >
-        <div className="container mx-auto px-6 py-5 flex items-center justify-between">
-          <motion.div whileHover={{ scale: 1.05 }} className="text-xl font-bold tracking-tight">
+        <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between">
+          <motion.div whileHover={{ scale: 1.05 }} className="text-lg sm:text-xl font-bold tracking-tight">
             PORTFO<span className="text-[#F5A623]">//</span>IO
           </motion.div>
-          <div className="hidden md:flex items-center gap-8">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-8">
             {["Home", "About", "Projects", "Contact"].map((item, i) => (
               <motion.a
                 key={item}
@@ -130,16 +130,20 @@ export default function Portfolio() {
               </motion.a>
             ))}
           </div>
+          
+          {/* Desktop Social Icons */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="flex items-center gap-4"
+            className="hidden md:flex items-center gap-4"
           >
-            {[Linkedin, Github, Dribbble].map((Icon, i) => (
+            {socialLinks.slice(0, 3).map(({ Icon, href }, i) => (
               <motion.a
                 key={i}
-                href="#"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, color: "#F5A623" }}
                 whileTap={{ scale: 0.9 }}
                 className="transition-colors"
@@ -148,29 +152,88 @@ export default function Portfolio() {
               </motion.a>
             ))}
           </motion.div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </motion.button>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="lg:hidden border-t border-white/10 bg-[#3A3A3A]/95 backdrop-blur-md"
+            >
+              <div className="container mx-auto px-4 sm:px-6 py-6">
+                <div className="flex flex-col space-y-4">
+                  {["Home", "About", "Projects", "Contact"].map((item, i) => (
+                    <motion.a
+                      key={item}
+                      href={`#${item.toLowerCase()}`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-lg font-medium py-2 px-4 rounded-lg hover:bg-white/10 transition-colors"
+                    >
+                      {item}
+                    </motion.a>
+                  ))}
+                  <div className="flex items-center gap-4 pt-4 border-t border-white/10">
+                    {socialLinks.slice(0, 3).map(({ Icon, href }, i) => (
+                      <motion.a
+                        key={i}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1 + 0.4 }}
+                        whileHover={{ scale: 1.2, color: "#F5A623" }}
+                        whileTap={{ scale: 0.9 }}
+                        className="transition-colors"
+                      >
+                        <Icon className="w-6 h-6" />
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center pt-16 sm:pt-20 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0 bg-[url(/src/assets/Main-bg.png)] bg-cover bg-center" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="border-2 border-cyan-500/60 rounded-2xl p-8 md:p-12 bg-gradient-to-br from-cyan-500/5 to-transparent"
+            className="border-2 border-cyan-500/60 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-12 bg-gradient-to-br from-cyan-500/5 to-transparent"
           >
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
               <motion.div style={{ opacity, scale }}>
                 <motion.h1
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-5xl md:text-7xl font-bold mb-6 text-balance leading-tight"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 text-balance leading-tight"
                 >
                   Abigail Wagura
                 </motion.h1>
@@ -178,7 +241,7 @@ export default function Portfolio() {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 md:mb-10 leading-relaxed"
                 >
                   UI/UX Designer & Full Stack Developer
                 </motion.p>
@@ -186,28 +249,20 @@ export default function Portfolio() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
+                  className="flex justify-center lg:justify-start"
                 >
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="relative inline-flex items-center overflow-hidden rounded-full shadow-2xl shadow-[#F5A623]/40 group"
+                    className="relative inline-flex items-center overflow-hidden rounded-full shadow-2xl shadow-[#F5A623]/40 group w-full sm:w-auto max-w-xs sm:max-w-none"
                   >
-                    
                     <a
                         href="/resume.pdf"
                         download="Abigail_Wagura_Resume.pdf"
-                        className="px-4 py-4 w-60 font-medium bg-brand text-white rounded-lg hover:bg-brand/90 transition"
+                        className="px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-60 font-medium bg-gradient-to-r from-[#F5A623] to-[#FF8C00] text-black rounded-lg hover:from-[#FF8C00] hover:to-[#F5A623] transition text-center text-sm sm:text-base"
                         >
                         Download Resume
                         </a>
-                    {/* <span className="bg-white px-5 py-4 flex items-center justify-center group-hover:bg-gray-100 transition-colors">
-                      <motion.div
-                        animate={{ x: [0, 5, 0] }}
-                        transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-                      >
-                        <ArrowRight className="w-6 h-6 text-black" />
-                      </motion.div>
-                    </span> */}
                   </motion.button>
                 </motion.div>
               </motion.div>
@@ -216,7 +271,7 @@ export default function Portfolio() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.6 }}
-                className="relative"
+                className="relative order-first lg:order-last flex justify-center"
               >
                 <motion.div
                   animate={{
@@ -229,13 +284,13 @@ export default function Portfolio() {
                   }}
                   className="relative z-10"
                 >
-                  <div className="relative w-full aspect-square max-w-md mx-auto">
+                  <div className="relative w-full aspect-square max-w-[250px] sm:max-w-xs md:max-w-sm lg:max-w-md mx-auto">
                     <img
                       src={hero}
                       alt="Abigail Wagura"
                       width={500}
                       height={500}
-                      className="relative z-10 rounded-2xl bg-black object-cover w-full h-full"
+                      className="relative z-10 rounded-xl sm:rounded-2xl bg-black object-cover w-full h-full"
                     />
                   </div>
                 </motion.div>
@@ -249,7 +304,7 @@ export default function Portfolio() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -262,7 +317,7 @@ export default function Portfolio() {
       </section>
 
       {/* About Section with Torch Effect */}
-      <section id="about" ref={aboutRef} className="py-32 relative overflow-hidden">
+      <section id="about" ref={aboutRef} className="py-16 sm:py-24 md:py-32 relative overflow-hidden px-4 sm:px-6">
         <motion.div
           className="pointer-events-none absolute inset-0 z-0"
           style={{
@@ -270,7 +325,7 @@ export default function Portfolio() {
           }}
         />
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -282,12 +337,12 @@ export default function Portfolio() {
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                className="text-2xl"
+                className="text-xl sm:text-2xl"
               >
                 (\)
               </motion.div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-12">About me</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12">About me</h2>
           </motion.div>
 
           <motion.div
@@ -295,9 +350,9 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h3 className="text-3xl md:text-4xl text-[#F5A623] font-semibold text-balance">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl text-[#F5A623] font-semibold text-balance">
               Explore the Creativity & More
             </h3>
           </motion.div>
@@ -307,9 +362,9 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-5xl mx-auto bg-gradient-to-br from-gray-200 to-gray-300 rounded-3xl p-10 md:p-16 shadow-2xl"
+            className="max-w-5xl mx-auto bg-gradient-to-br from-gray-200 to-gray-300 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 shadow-2xl"
           >
-            <p className="text-gray-800 leading-relaxed text-lg md:text-xl text-pretty">
+            <p className="text-gray-800 leading-relaxed text-base sm:text-lg md:text-xl text-pretty">
               I'm a passionate UI/UX designer and full-stack developer with a deep drive to turn digital experiences
               into art that are both visually captivating and highly functional. With a strong foundation in design
               thinking, frontend engineering, and backend development, I bridge the gap between aesthetics, usability,
@@ -326,14 +381,14 @@ export default function Portfolio() {
       </section>
 
       {/* Services Section */}
-      <section className="py-32 relative">
-        <div className="container mx-auto px-6">
+      <section className="py-16 sm:py-24 md:py-32 relative px-4 sm:px-6">
+        <div className="container mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold mb-16 text-center"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-16 text-center"
           >
             Services
           </motion.h2>
@@ -376,22 +431,22 @@ export default function Portfolio() {
                 whileHover={{ x: 10 }}
                 className="group"
               >
-                <div className="flex items-center gap-8 p-8 rounded-xl border-b border-white/10 hover:bg-white/5 transition-all duration-300">
-                  <span className="text-3xl font-bold text-gray-500 group-hover:text-[#F5A623] transition-colors min-w-[60px]">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 p-4 sm:p-6 md:p-8 rounded-xl border-b border-white/10 hover:bg-white/5 transition-all duration-300">
+                  <span className="text-2xl sm:text-3xl font-bold text-gray-500 group-hover:text-[#F5A623] transition-colors min-w-[60px]">
                     {service.number}
                   </span>
                   <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-[#F5A623] transition-colors">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 group-hover:text-[#F5A623] transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-gray-400 text-lg">{service.description}</p>
+                    <p className="text-gray-400 text-base sm:text-lg">{service.description}</p>
                   </div>
                   <motion.div
                     whileHover={{ scale: 1.2, rotate: -45 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-12 h-12 rounded-full bg-[#F5A623] flex items-center justify-center flex-shrink-0 cursor-pointer shadow-lg shadow-[#F5A623]/30"
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#F5A623] flex items-center justify-center flex-shrink-0 cursor-pointer shadow-lg shadow-[#F5A623]/30 self-start sm:self-center"
                   >
-                    <ArrowRight className="w-6 h-6 text-black" />
+                    <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
                   </motion.div>
                 </div>
               </motion.div>
@@ -401,21 +456,21 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-32 relative">
-        <div className="container mx-auto px-6">
+      <section id="projects" className="py-16 sm:py-24 md:py-32 relative px-4 sm:px-6">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-16"
+            className="mb-12 sm:mb-16"
           >
-            <div className="flex items-center justify-center gap-6 mb-16">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-12 sm:mb-16">
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab("ui-ux")}
-                className={`px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 ${
+                className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition-all duration-300 w-full sm:w-auto ${
                   activeTab === "ui-ux"
                     ? "bg-[#F5A623] text-black shadow-lg shadow-[#F5A623]/40"
                     : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
@@ -427,7 +482,7 @@ export default function Portfolio() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab("web")}
-                className={`px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 ${
+                className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition-all duration-300 w-full sm:w-auto ${
                   activeTab === "web"
                     ? "bg-[#F5A623] text-black shadow-lg shadow-[#F5A623]/40"
                     : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
@@ -445,75 +500,61 @@ export default function Portfolio() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="grid md:grid-cols-2 gap-10"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10"
             >
               {[
                 {
-                  //uiux
                   title: "Novel Nest",
-                  description:
-                    "A module web design for book lovers featuring a clean, modern interface with intuitive navigation.",
-                    img:Novelnest,
-                    link:"https://www.figma.com/design/RhrJeDqmiLx0Yna6EX6etR/NOVEL-APP?node-id=0-1&t=szf0ldSPlAFWX4m4-1",
-                    category:"ui-ux"
-                    
+                  description: "A module web design for book lovers featuring a clean, modern interface with intuitive navigation.",
+                  img: Novelnest,
+                  link: "/case-study/novel-nest",
+                  externalLink: "https://www.figma.com/design/RhrJeDqmiLx0Yna6EX6etR/NOVEL-APP?node-id=0-1&t=szf0ldSPlAFWX4m4-1",
+                  category: "ui-ux",
+                  slug: "novel-nest"
                 },
                 {
                   title: "E-learning Platform",
-                  description:
-                    "A comprehensive design for an e-learning platform with a focus on user experience and accessibility.",
-                    img:EduLearn,
-                    link:"https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1",
-                    category:"ui-ux"
+                  description: "A comprehensive design for an e-learning platform with a focus on user experience and accessibility.",
+                  img: EduLearn,
+                  link: "/case-study/edulearn",
+                  externalLink: "https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1",
+                  category: "ui-ux",
+                  slug: "edulearn"
+                },
+                {
+                  title: "Soulspace",
+                  description: "A seamless platform that connects therapists and patients for accessible, secure, and personalized mental health support.",
+                  img: Soulspace,
+                  link: "/case-study/tryve",
+                  externalLink: "https://www.figma.com/design/gkF6S66QSBjdw4g4GOHdbP/Tyrve?node-id=238-314&t=KROz3Yv5G2k99zMR-1",
+                  category: "ui-ux",
+                  slug: "soulsp"
+                },
                 
-                },
-                {
-                  title: "Tryve",
-                  description:
-                    "A seamless platform that connects therapists and patients for accessible, secure, and personalized mental health support.",
-                    img:Tryve,
-                    link:"https://www.figma.com/design/gkF6S66QSBjdw4g4GOHdbP/Tyrve?node-id=238-314&t=KROz3Yv5G2k99zMR-1",
-                    category:"ui-ux"
-                //   image: "/mobile-education-app.jpg",
-                },
-                {
-                  title: "Academia/Uni Case Study",
-                  description:
-                    "A detailed case study on enhancing the academic platform user experience and engagement.",
-                    img:AcademmiHub,
-                    link:"https://www.figma.com/design/CIBUAu50oLPdWAhNTpwFEn/SOLO-PROJECT-EDU-LEARN?node-id=0-1&t=tN0BasigbLPcBoGe-1",
-                    category:"ui-ux"
-                    
-                },
                 {
                   title: "Tik-lish",
-                  description:
-                    "Tik-lish is a peer-to-peer ticketing app that lets students securely resell and buy event tickets through instant paywall links—eliminating the chaos of massive group chats and endless DMs.",
-                    img:Tiklish,
-                    link:"https://www.figma.com/design/9HjUd934rs9vrrcjo1Blsk/TICKLISH?node-id=44-11&p=f&t=MqwwkKcFCLWMqsVM-0",
-                    category:"ui-ux"
-                    
+                  description: "Tik-lish is a peer-to-peer ticketing app that lets students securely resell and buy event tickets through instant paywall links—eliminating the chaos of massive group chats and endless DMs.",
+                  img: Tiklish,
+                  link: "/case-study/tiklish",
+                  
+                  category: "ui-ux",
+                  slug: "tiklish"
                 },
-                //web apps
                 {
                   title: "AfyaBuddy",
-                  description:
-                    "AfyaBuddy is an AI-powered first aid assistant that provides quick, step-by-step guidance to help users respond effectively during medical emergencies.",
-                    img:AfyaBuddy,
-                    link:"https://celadon-mousse-1866c3.netlify.app/",
-                    category:"web"
-                
+                  description: "AfyaBuddy is an AI-powered first aid assistant that provides quick, step-by-step guidance to help users respond effectively during medical emergencies.",
+                  img: AfyaBuddy,
+                  link: "https://celadon-mousse-1866c3.netlify.app/",
+                  category: "web"
                 },
                 {
                   title: "MwanafunziHub",
-                  description:
-                    "MwanafunziHub is a comprehensive student portal designed to streamline academic management, enhance communication, and provide valuable resources for students.",
-                    img:MwanafunziHub,
-                    link:"https://mwanafunzi-hub-r1uq.onrender.com/",
-                    category:"web"
-                
-                },
-                ].filter(project => project.category === activeTab).map((project, i) => (
+                  description: "MwanafunziHub is a comprehensive student portal designed to streamline academic management, enhance communication, and provide valuable resources for students.",
+                  img: MwanafunziHub,
+                  link: "https://mwanafunzi-hub-r1uq.onrender.com/",
+                  category: "web"
+                }
+              ].filter(project => project.category === activeTab).map((project, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -521,7 +562,7 @@ export default function Portfolio() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   whileHover={{ y: -10 }}
-                  className="group relative overflow-hidden rounded-3xl bg-white/5 border border-white/10 hover:border-[#F5A623]/50 transition-all duration-300 cursor-pointer"
+                  className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/5 border border-white/10 hover:border-[#F5A623]/50 transition-all duration-300 cursor-pointer"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <img
@@ -533,24 +574,37 @@ export default function Portfolio() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#3A3A3A] via-[#3A3A3A]/60 to-transparent" />
                   </div>
-                  <div className="p-8">
+                  <div className="p-4 sm:p-6 md:p-8">
                     <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#F5A623] transition-colors">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold group-hover:text-[#F5A623] transition-colors">
                         {project.title}
                       </h3>
-                      <motion.a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2, rotate: -45 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="w-12 h-12 rounded-full bg-[#F5A623] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#F5A623]/30"
-                        onClick={(e) => e.stopPropagation()}
+                      {(project.slug || project.category === "web") && (
+                        <motion.a
+                          href={project.category === "web" ? project.link : undefined}
+                          target={project.category === "web" ? "_blank" : "_self"}
+                          rel={project.category === "web" ? "noopener noreferrer" : undefined}
+                          whileHover={{ scale: 1.2, rotate: -45 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#F5A623] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#F5A623]/30"
+                          onClick={(e) => e.stopPropagation()}
                         >
-                        <ArrowRight className="w-6 h-6 text-black" />
+                          <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
                         </motion.a>
+                      )}
                     </div>
-                    <p className="text-gray-300 text-lg leading-relaxed">{project.description}</p>
+                    <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-4">{project.description}</p>
+                    {project.slug && (
+                      <div className="mt-4">
+                        <Link
+                          to={project.link}
+                          className="inline-flex items-center gap-2 text-[#F5A623] hover:text-[#F5A623]/80 transition-colors text-sm sm:text-base"
+                        >
+                          View Case Study
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -560,8 +614,8 @@ export default function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-32 relative">
-        <div className="container mx-auto px-6">
+      <section id="contact" className="py-16 sm:py-24 md:py-32 relative px-4 sm:px-6">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -569,19 +623,19 @@ export default function Portfolio() {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Let's Work Together</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-16 text-center">Let's Work Together</h2>
 
-            <div className=" mb-16">
+            <div className="mb-12 sm:mb-16">
               <motion.div
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="flex items-center gap-6 p-8 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 hover:border-[#F5A623]/50 transition-all duration-300 cursor-pointer"
+                className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 p-6 sm:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 hover:border-[#F5A623]/50 transition-all duration-300 cursor-pointer"
               >
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#F5A623] to-[#FF8C00] flex items-center justify-center shadow-lg shadow-[#F5A623]/30">
-                  <Mail className="w-7 h-7 text-black" />
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-[#F5A623] to-[#FF8C00] flex items-center justify-center shadow-lg shadow-[#F5A623]/30 flex-shrink-0">
+                  <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-black" />
                 </div>
-                <div>
+                <div className="text-center sm:text-left">
                   <p className="text-sm text-gray-400 mb-2 font-medium">Email</p>
-                  <p className="font-bold text-lg">abigailwagura1@gmail.com</p>
+                  <p className="font-bold text-base sm:text-lg break-all sm:break-normal">abigailwagura1@gmail.com</p>
                 </div>
               </motion.div>
             </div>
@@ -598,13 +652,13 @@ export default function Portfolio() {
             >
               {submitStatus === 'success' ? (
                 <>
-                  <CheckCircle className="w-6 h-6" />
-                  <span className="font-medium">Message sent successfully! I'll get back to you soon.</span>
+                  <CheckCircle className="w-6 h-6 flex-shrink-0" />
+                  <span className="font-medium text-sm sm:text-base">Message sent successfully! I'll get back to you soon.</span>
                 </>
               ) : (
                 <>
-                  <XCircle className="w-6 h-6" />
-                  <span className="font-medium">Failed to send message. Please try again or email directly.</span>
+                  <XCircle className="w-6 h-6 flex-shrink-0" />
+                  <span className="font-medium text-sm sm:text-base">Failed to send message. Please try again or email directly.</span>
                 </>
               )}
             </motion.div>
@@ -616,9 +670,9 @@ export default function Portfolio() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
               onSubmit={handleSubmit}
-              className="space-y-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-3xl p-10 md:p-12 border border-white/20 shadow-2xl"
+              className="space-y-6 sm:space-y-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 border border-white/20 shadow-2xl"
             >
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold mb-3 text-gray-300">
                     Your Name
@@ -628,7 +682,7 @@ export default function Portfolio() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                    className="bg-white/5 border-white/20 focus:border-[#F5A623] text-white h-14 rounded-xl text-lg transition-all duration-300"
+                    className="bg-white/5 border-white/20 focus:border-[#F5A623] text-white h-12 sm:h-14 rounded-xl text-base sm:text-lg transition-all duration-300"
                     placeholder="John Doe"
                   />
                 </div>
@@ -642,7 +696,7 @@ export default function Portfolio() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
-                    className="bg-white/5 border-white/20 focus:border-[#F5A623] text-white h-14 rounded-xl text-lg transition-all duration-300"
+                    className="bg-white/5 border-white/20 focus:border-[#F5A623] text-white h-12 sm:h-14 rounded-xl text-base sm:text-lg transition-all duration-300"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -657,7 +711,7 @@ export default function Portfolio() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                   rows={6}
-                  className="bg-white/5 border-white/20 focus:border-[#F5A623] text-white resize-none rounded-xl text-lg transition-all duration-300"
+                  className="bg-white/5 border-white/20 focus:border-[#F5A623] text-white resize-none rounded-xl text-base sm:text-lg transition-all duration-300"
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -665,7 +719,7 @@ export default function Portfolio() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="relative w-full bg-gradient-to-r from-[#F5A623] to-[#FF8C00] hover:from-[#FF8C00] hover:to-[#F5A623] text-black font-bold py-7 text-lg rounded-xl shadow-lg shadow-[#F5A623]/40 overflow-hidden transition-all duration-300"
+                  className="relative w-full bg-gradient-to-r from-[#F5A623] to-[#FF8C00] hover:from-[#FF8C00] hover:to-[#F5A623] text-black font-bold py-6 sm:py-7 text-base sm:text-lg rounded-xl shadow-lg shadow-[#F5A623]/40 overflow-hidden transition-all duration-300"
                 >
                   <span className="relative z-10 flex items-center justify-center">
                     {isSubmitting ? (
@@ -673,12 +727,12 @@ export default function Portfolio() {
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
                       >
-                        <Send className="w-6 h-6" />
+                        <Send className="w-5 h-5 sm:w-6 sm:h-6" />
                       </motion.div>
                     ) : (
                       <>
                         Send Message
-                        <Send className="ml-3 w-6 h-6" />
+                        <Send className="ml-2 sm:ml-3 w-5 h-5 sm:w-6 sm:h-6" />
                       </>
                     )}
                   </span>
@@ -696,25 +750,27 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-white/10">
-        <div className="container mx-auto px-6">
+      <footer className="py-8 sm:py-12 border-t border-white/10 px-4 sm:px-6">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="flex flex-col md:flex-row items-center justify-between gap-6"
+            className="flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6"
           >
-            <p className="text-gray-400 text-sm">© 2025 Abigail Wagura. All rights reserved.</p>
-            <div className="flex items-center gap-6">
-              {socialLinks.map(({  href }, i) => (
+            <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left">© 2025 Abigail Wagura. All rights reserved.</p>
+            <div className="flex items-center gap-4 sm:gap-6">
+              {socialLinks.map(({ Icon, href }, i) => (
                 <motion.a
                   key={i}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.3, color: "#F5A623", y: -3 }}
                   whileTap={{ scale: 0.9 }}
                   className="text-gray-400 hover:text-[#F5A623] transition-colors"
                 >
-                  
+                  <Icon className="w-5 h-5" />
                 </motion.a>
               ))}
             </div>
