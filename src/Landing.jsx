@@ -296,16 +296,7 @@ export default function Portfolio() {
                   transition={{ delay: 0.75 }}
                   className="flex flex-col sm:flex-row gap-3"
                 >
-                  <motion.a
-                    href="/resume.pdf"
-                    download="Abigail_Wagura_Resume.pdf"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-[#1A1A1A] text-white text-sm font-semibold hover:bg-[#333] transition-colors shadow-md"
-                  >
-                    Download Resume
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.a>
+                 
                   <motion.a
                     href="#projects"
                     whileHover={{ scale: 1.03 }}
