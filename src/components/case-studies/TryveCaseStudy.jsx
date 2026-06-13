@@ -8,299 +8,242 @@ export default function TryveCaseStudy() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-[#3A3A3A] text-white">
+    <div className="min-h-screen bg-[#F8F7F4] text-[#1A1A1A] font-sans">
       {/* Navigation */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 bg-[#3A3A3A]/95 backdrop-blur-md border-b border-white/10"
+        className="fixed top-0 left-0 right-0 z-50 bg-[#F8F7F4]/95 backdrop-blur-md border-b border-[#E2DDD6]"
       >
-        <div className="container mx-auto px-6 py-5 flex items-center justify-between">
-          <motion.div 
-            whileHover={{ scale: 1.05 }} 
-            className="text-xl font-bold tracking-tight cursor-pointer"
+        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            className="text-lg font-bold tracking-tight text-[#1A1A1A] cursor-pointer"
             onClick={() => navigate('/')}
           >
-            PORTFO<span className="text-[#F5A623]">//</span>IO
+            PORTFO<span className="text-[#C8703A]">//</span>IO
           </motion.div>
-          
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <motion.button
-              whileHover={{ scale: 1.05, x: -5 }}
+              whileHover={{ scale: 1.05, x: -3 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate(-1)}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#E2DDD6] bg-white text-[#555] text-sm font-medium hover:border-[#C8703A] hover:text-[#C8703A] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm font-medium">Back</span>
+              Back
             </motion.button>
-            
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/')}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5A623] text-black hover:bg-[#F5A623]/90 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A1A1A] text-white text-sm font-semibold hover:bg-[#C8703A] transition-colors"
             >
               <Home className="w-4 h-4" />
-              <span className="text-sm font-medium">Home</span>
+              Home
             </motion.button>
           </div>
         </div>
       </motion.nav>
 
-      {/* Main Content */}
       <main className="pt-20">
         <div className="container mx-auto px-6 py-16">
-          {/* Hero Section */}
+
+          {/* Hero */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <motion.h1
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-5xl md:text-6xl font-bold mb-6 leading-tight"
-                >
-                  Tryve
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-xl text-gray-300 mb-8 leading-relaxed"
-                >
+                <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#C8703A] mb-3">Case Study</p>
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-[#1A1A1A]">Soulspace</h1>
+                <p className="text-lg text-[#555] mb-8 leading-relaxed">
                   A seamless platform that connects therapists and patients for accessible, secure, and personalized mental health support.
-                </motion.p>
+                </p>
                 <motion.a
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
+                  transition={{ duration: 0.7, delay: 0.5 }}
                   href="https://www.figma.com/design/gkF6S66QSBjdw4g4GOHdbP/Tyrve?node-id=238-314&t=KROz3Yv5G2k99zMR-1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#F5A623] text-black font-semibold rounded-lg hover:bg-[#F5A623]/90 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#1A1A1A] text-white font-semibold rounded-full hover:bg-[#C8703A] transition-colors shadow-md"
                 >
                   View Figma Design
                   <ExternalLink className="w-4 h-4" />
                 </motion.a>
               </div>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative"
+                transition={{ duration: 0.7, delay: 0.3 }}
               >
-                <img
-                  src={Soulspace}
-                  alt="Soulspace Design"
-                  className="w-full rounded-2xl shadow-2xl"
-                />
+                <img src={Soulspace} alt="Soulspace Design" className="w-full rounded-2xl shadow-lg border border-[#E8E4DF]" />
               </motion.div>
             </div>
           </motion.div>
 
           {/* Project Details */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid md:grid-cols-3 gap-8 mb-20"
-          >
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-              <Users className="w-8 h-8 text-[#F5A623] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Target Users</h3>
-              <p className="text-gray-300">Individuals seeking mental health support, licensed therapists</p>
-            </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-              <Clock className="w-8 h-8 text-[#F5A623] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Timeline</h3>
-              <p className="text-gray-300">6 weeks comprehensive design</p>
-            </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-              <Target className="w-8 h-8 text-[#F5A623] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">My Role</h3>
-              <p className="text-gray-300">Lead UX Designer, User Research, Prototyping</p>
-            </div>
-          </motion.div>
-
-          {/* Problem Statement */}
-          <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
+            className="grid md:grid-cols-3 gap-6 mb-20"
+          >
+            {[
+              { Icon: Users, title: "Target Users", text: "Individuals seeking mental health support, licensed therapists" },
+              { Icon: Clock, title: "Timeline", text: "6 weeks comprehensive design" },
+              { Icon: Target, title: "My Role", text: "Lead UX Designer, User Research, Prototyping" },
+            ].map(({ Icon, title, text }, i) => (
+              <div key={i} className="bg-white rounded-xl p-6 border border-[#E8E4DF] shadow-sm">
+                <Icon className="w-7 h-7 text-[#C8703A] mb-3" />
+                <h3 className="text-base font-semibold mb-1 text-[#1A1A1A]">{title}</h3>
+                <p className="text-[#666] text-sm">{text}</p>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Problem */}
+          <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-8 text-[#F5A623]">The Problem</h2>
-            <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-8 border border-white/10">
-              <p className="text-lg leading-relaxed text-gray-200 mb-6">
-                Mental health support is often inaccessible due to geographical barriers, long waiting times, 
-                high costs, and stigma. Many people struggle to find qualified therapists, while existing 
-                platforms lack personalization and fail to create a sense of trust and comfort essential 
+            <h2 className="text-3xl font-bold mb-6 text-[#1A1A1A]">The Problem</h2>
+            <div className="bg-white rounded-2xl p-8 border border-[#E8E4DF] shadow-sm">
+              <p className="text-base leading-relaxed text-[#444] mb-8">
+                Mental health support is often inaccessible due to geographical barriers, long waiting times,
+                high costs, and stigma. Many people struggle to find qualified therapists, while existing
+                platforms lack personalization and fail to create a sense of trust and comfort essential
                 for therapeutic relationships.
               </p>
-              <div className="grid md:grid-cols-3 gap-6 mt-8">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-red-400 mb-2">76%</div>
-                  <div className="text-gray-300 text-sm">of people can't access mental health care</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-red-400 mb-2">3-6 months</div>
-                  <div className="text-gray-300 text-sm">average wait time for therapy</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-red-400 mb-2">60%</div>
-                  <div className="text-gray-300 text-sm">avoid seeking help due to stigma</div>
-                </div>
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  { value: "76%", label: "of people can't access mental health care" },
+                  { value: "3–6 mo", label: "average wait time for therapy" },
+                  { value: "60%", label: "avoid seeking help due to stigma" },
+                ].map((stat, i) => (
+                  <div key={i} className="text-center p-4 bg-red-50 rounded-xl border border-red-100">
+                    <div className="text-2xl font-bold text-red-500 mb-1">{stat.value}</div>
+                    <div className="text-[#666] text-sm">{stat.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.section>
 
           {/* Solution */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-8 text-[#F5A623]">The Solution</h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className="text-lg leading-relaxed text-gray-200 mb-6">
-                  Tryve creates a secure, empathetic digital environment where users can easily connect 
-                  with licensed therapists through various communication channels. The platform prioritizes 
-                  trust, privacy, and personalized matching to ensure the best therapeutic relationships.
-                </p>
-                <div className="grid grid-cols-1 gap-4">
-                  <div className="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
-                    <Heart className="w-6 h-6 text-[#F5A623] flex-shrink-0" />
-                    <span className="text-gray-300">Personalized therapist matching algorithm</span>
+            <h2 className="text-3xl font-bold mb-6 text-[#1A1A1A]">The Solution</h2>
+            <div className="grid md:grid-cols-2 gap-10 items-start">
+              <p className="text-base leading-relaxed text-[#444]">
+                Tryve creates a secure, empathetic digital environment where users can easily connect
+                with licensed therapists through various communication channels. The platform prioritizes
+                trust, privacy, and personalized matching to ensure the best therapeutic relationships.
+              </p>
+              <div className="space-y-3">
+                {[
+                  { Icon: Heart, text: "Personalized therapist matching algorithm" },
+                  { Icon: Shield, text: "HIPAA-compliant security and privacy" },
+                  { Icon: MessageCircle, text: "Multiple communication options (text, audio, video)" },
+                ].map(({ Icon, text }, i) => (
+                  <div key={i} className="flex items-center gap-3 p-4 bg-white rounded-lg border border-[#E8E4DF]">
+                    <Icon className="w-5 h-5 text-[#C8703A] flex-shrink-0" />
+                    <span className="text-[#444] text-sm">{text}</span>
                   </div>
-                  <div className="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
-                    <Shield className="w-6 h-6 text-[#F5A623] flex-shrink-0" />
-                    <span className="text-gray-300">HIPAA-compliant security and privacy</span>
-                  </div>
-                  <div className="flex items-center gap-3 p-4 bg-white/5 rounded-lg">
-                    <MessageCircle className="w-6 h-6 text-[#F5A623] flex-shrink-0" />
-                    <span className="text-gray-300">Multiple communication options (text, audio, video)</span>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </motion.section>
 
           {/* User Research */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-12 text-[#F5A623]">User Research Insights</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white/5 rounded-xl p-8 border border-white/10">
-                <h3 className="text-xl font-semibold mb-4 text-[#F5A623]">Patient Needs</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Easy access to qualified therapists</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Flexible scheduling and communication</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Affordable and transparent pricing</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Complete privacy and confidentiality</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-white/5 rounded-xl p-8 border border-white/10">
-                <h3 className="text-xl font-semibold mb-4 text-[#F5A623]">Therapist Needs</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Efficient patient management tools</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Secure communication platform</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Streamlined billing and payments</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Professional development resources</span>
-                  </li>
-                </ul>
-              </div>
+            <h2 className="text-3xl font-bold mb-8 text-[#1A1A1A]">User Research Insights</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "Patient Needs",
+                  items: [
+                    "Easy access to qualified therapists",
+                    "Flexible scheduling and communication",
+                    "Affordable and transparent pricing",
+                    "Complete privacy and confidentiality",
+                  ],
+                },
+                {
+                  title: "Therapist Needs",
+                  items: [
+                    "Efficient patient management tools",
+                    "Secure communication platform",
+                    "Streamlined billing and payments",
+                    "Professional development resources",
+                  ],
+                },
+              ].map(({ title, items }, i) => (
+                <div key={i} className="bg-white rounded-xl p-8 border border-[#E8E4DF] shadow-sm">
+                  <h3 className="text-lg font-semibold mb-4 text-[#C8703A]">{title}</h3>
+                  <ul className="space-y-3">
+                    {items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#C8703A] mt-2 flex-shrink-0" />
+                        <span className="text-[#555] text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </motion.section>
 
           {/* Design Process */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-12 text-[#F5A623]">Design Process</h2>
+            <h2 className="text-3xl font-bold mb-10 text-[#1A1A1A]">Design Process</h2>
             <div className="grid md:grid-cols-5 gap-6">
               {[
-                {
-                  step: "01",
-                  title: "Empathy",
-                  description: "Interviews with patients and therapists to understand emotional needs"
-                },
-                {
-                  step: "02", 
-                  title: "Define",
-                  description: "Identifying core problems and user pain points in mental health access"
-                },
-                {
-                  step: "03",
-                  title: "Ideate",
-                  description: "Brainstorming solutions focused on trust, accessibility, and connection"
-                },
-                {
-                  step: "04",
-                  title: "Prototype",
-                  description: "Creating interactive prototypes for key user journeys"
-                },
-                {
-                  step: "05",
-                  title: "Test",
-                  description: "Usability testing with focus on emotional comfort and ease of use"
-                }
+                { step: "01", title: "Empathy", description: "Interviews with patients and therapists to understand emotional needs" },
+                { step: "02", title: "Define", description: "Identifying core problems and user pain points in mental health access" },
+                { step: "03", title: "Ideate", description: "Brainstorming solutions focused on trust, accessibility, and connection" },
+                { step: "04", title: "Prototype", description: "Creating interactive prototypes for key user journeys" },
+                { step: "05", title: "Test", description: "Usability testing with focus on emotional comfort and ease of use" },
               ].map((phase, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
                   className="text-center"
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#F5A623] text-black font-bold text-xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-14 h-14 rounded-full bg-[#1A1A1A] text-white font-bold text-base flex items-center justify-center mx-auto mb-3 hover:bg-[#C8703A] transition-colors">
                     {phase.step}
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{phase.title}</h3>
-                  <p className="text-gray-300 text-sm">{phase.description}</p>
+                  <h3 className="text-sm font-semibold mb-1 text-[#1A1A1A]">{phase.title}</h3>
+                  <p className="text-[#777] text-xs leading-relaxed">{phase.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -308,46 +251,31 @@ export default function TryveCaseStudy() {
 
           {/* Key Features */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-12 text-[#F5A623]">Key Features</h2>
-            <div className="space-y-8">
+            <h2 className="text-3xl font-bold mb-8 text-[#1A1A1A]">Key Features</h2>
+            <div className="space-y-4">
               {[
-                {
-                  title: "Smart Matching",
-                  description: "AI-powered algorithm matches patients with therapists based on specialties, personality, communication style, and preferences"
-                },
-                {
-                  title: "Flexible Sessions",
-                  description: "Choose from text messaging, voice calls, video sessions, or a combination based on comfort level and needs"
-                },
-                {
-                  title: "Progress Tracking",
-                  description: "Mood tracking, goal setting, and progress visualization to help both patients and therapists monitor improvement"
-                },
-                {
-                  title: "Crisis Support",
-                  description: "24/7 crisis intervention resources and immediate support for users in emergency situations"
-                },
-                {
-                  title: "Secure Messaging",
-                  description: "End-to-end encrypted communication with read receipts and secure file sharing for homework and resources"
-                }
+                { title: "Smart Matching", description: "AI-powered algorithm matches patients with therapists based on specialties, personality, communication style, and preferences" },
+                { title: "Flexible Sessions", description: "Choose from text messaging, voice calls, video sessions, or a combination based on comfort level and needs" },
+                { title: "Progress Tracking", description: "Mood tracking, goal setting, and progress visualization to help both patients and therapists monitor improvement" },
+                { title: "Crisis Support", description: "24/7 crisis intervention resources and immediate support for users in emergency situations" },
+                { title: "Secure Messaging", description: "End-to-end encrypted communication with read receipts and secure file sharing for homework and resources" },
               ].map((feature, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="bg-white/5 rounded-xl p-6 border border-white/10"
+                  transition={{ duration: 0.5, delay: i * 0.07 }}
+                  className="bg-white rounded-xl p-6 border border-[#E8E4DF] shadow-sm"
                 >
-                  <h3 className="text-xl font-semibold mb-3 text-[#F5A623]">{feature.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">{feature.description}</p>
+                  <h3 className="text-base font-semibold mb-2 text-[#C8703A]">{feature.title}</h3>
+                  <p className="text-[#555] text-sm leading-relaxed">{feature.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -355,103 +283,58 @@ export default function TryveCaseStudy() {
 
           {/* Design Showcase */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-12 text-[#F5A623]">Design Showcase</h2>
-            
+            <h2 className="text-3xl font-bold mb-10 text-[#1A1A1A]">Design Showcase</h2>
+
             {/* Landing Pages */}
-            <div className="mb-16">
-              <h3 className="text-2xl font-semibold mb-8">Landing & Core Pages</h3>
-              <div className="grid md:grid-cols-3 gap-8">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="group"
-                >
-                  <div className="relative overflow-hidden rounded-xl border border-white/10 hover:border-[#F5A623]/50 transition-all duration-300">
-                    <img
-                      src="/Soulspace/Landing page.png"
-                      alt="Tryve Landing Page"
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <h4 className="text-white font-semibold">Landing Page</h4>
+            <div className="mb-14">
+              <h3 className="text-xl font-semibold mb-6 text-[#1A1A1A]">Landing & Core Pages</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  { src: "/Soulspace/Landing page.png", label: "Landing Page" },
+                  { src: "/Soulspace/Sign in page.png", label: "Sign In Page" },
+                  { src: "/Soulspace/Sign up page.png", label: "Sign Up Page" },
+                ].map(({ src, label }, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    className="group relative overflow-hidden rounded-xl border border-[#E8E4DF] hover:border-[#C8703A]/50 hover:shadow-md transition-all duration-300 bg-white"
+                  >
+                    <img src={src} alt={label} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="text-white text-sm font-semibold">{label}</span>
                     </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="group"
-                >
-                  <div className="relative overflow-hidden rounded-xl border border-white/10 hover:border-[#F5A623]/50 transition-all duration-300">
-                    <img
-                      src="/Soulspace/Sign in page.png"
-                      alt="Tryve Sign In Page"
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <h4 className="text-white font-semibold">Sign In Page</h4>
-                    </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="group"
-                >
-                  <div className="relative overflow-hidden rounded-xl border border-white/10 hover:border-[#F5A623]/50 transition-all duration-300">
-                    <img
-                      src="/Soulspace/Sign up page.png"
-                      alt="Tryve Sign Up Page"
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <h4 className="text-white font-semibold">Sign Up Page</h4>
-                    </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                ))}
               </div>
             </div>
 
             {/* Desktop Screens */}
-            <div className="mb-16">
-              <h3 className="text-2xl font-semibold mb-8">Desktop Experience</h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((num, index) => (
+            <div className="mb-14">
+              <h3 className="text-xl font-semibold mb-6 text-[#1A1A1A]">Desktop Experience</h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1,2,3,4,5,6,7,8,9,10,11].map((num, index) => (
                   <motion.div
                     key={num}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="group"
+                    transition={{ duration: 0.5, delay: index * 0.06 }}
+                    className="group relative overflow-hidden rounded-xl border border-[#E8E4DF] hover:border-[#C8703A]/50 hover:shadow-md transition-all duration-300 bg-white"
                   >
-                    <div className="relative overflow-hidden rounded-xl border border-white/10 hover:border-[#F5A623]/50 transition-all duration-300">
-                      <img
-                        src={`/Soulspace/Desktop - ${num}.png`}
-                        alt={`Tryve Desktop Screen ${num}`}
-                        className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h4 className="text-white font-semibold">Desktop View {num}</h4>
-                      </div>
+                    <img src={`/Soulspace/Desktop - ${num}.png`} alt={`Desktop View ${num}`} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="text-white text-sm font-semibold">Desktop View {num}</span>
                     </div>
                   </motion.div>
                 ))}
@@ -459,9 +342,9 @@ export default function TryveCaseStudy() {
             </div>
 
             {/* Mobile Screens */}
-            <div className="mb-16">
-              <h3 className="text-2xl font-semibold mb-8">Mobile Experience</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="mb-14">
+              <h3 className="text-xl font-semibold mb-6 text-[#1A1A1A]">Mobile Experience</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {[
                   { num: 13, label: "Onboarding" },
                   { num: 14, label: "Profile Setup" },
@@ -471,116 +354,88 @@ export default function TryveCaseStudy() {
                   { num: 19, label: "Session Booking" },
                   { num: 20, label: "Video Call" },
                   { num: 22, label: "Progress Tracking" },
-                  { num: 24, label: "Settings" }
+                  { num: 24, label: "Settings" },
                 ].map((screen, index) => (
                   <motion.div
                     key={screen.num}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="group"
+                    transition={{ duration: 0.5, delay: index * 0.06 }}
+                    className="group relative overflow-hidden rounded-2xl border border-[#E8E4DF] hover:border-[#C8703A]/50 hover:shadow-md transition-all duration-300 bg-white"
                   >
-                    <div className="relative overflow-hidden rounded-2xl border border-white/10 hover:border-[#F5A623]/50 transition-all duration-300">
-                      <img
-                        src={`/Soulspace/iPhone 16 Plus - ${screen.num}.png`}
-                        alt={`Tryve Mobile - ${screen.label}`}
-                        className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <h4 className="text-white font-semibold text-sm">{screen.label}</h4>
-                      </div>
+                    <img src={`/Soulspace/iPhone 16 Plus - ${screen.num}.png`} alt={screen.label} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="text-white text-xs font-semibold">{screen.label}</span>
                     </div>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* Additional Landing Variations */}
-            <div className="mb-16">
-              <h3 className="text-2xl font-semibold mb-8">Landing Page Variations</h3>
-              <div className="grid md:grid-cols-2 gap-8">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="group"
-                >
-                  <div className="relative overflow-hidden rounded-xl border border-white/10 hover:border-[#F5A623]/50 transition-all duration-300">
-                    <img
-                      src="/Soulspace/Landing page-1.png"
-                      alt="Tryve Landing Variation 1"
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <h4 className="text-white font-semibold">Landing Variation 1</h4>
+            {/* Landing Variations */}
+            <div>
+              <h3 className="text-xl font-semibold mb-6 text-[#1A1A1A]">Landing Page Variations</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  { src: "/Soulspace/Landing page-1.png", label: "Landing Variation 1" },
+                  { src: "/Soulspace/Landing page-2.png", label: "Landing Variation 2" },
+                ].map(({ src, label }, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    className="group relative overflow-hidden rounded-xl border border-[#E8E4DF] hover:border-[#C8703A]/50 hover:shadow-md transition-all duration-300 bg-white"
+                  >
+                    <img src={src} alt={label} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="text-white text-sm font-semibold">{label}</span>
                     </div>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  className="group"
-                >
-                  <div className="relative overflow-hidden rounded-xl border border-white/10 hover:border-[#F5A623]/50 transition-all duration-300">
-                    <img
-                      src="/Soulspace/Landing page-2.png"
-                      alt="Tryve Landing Variation 2"
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <h4 className="text-white font-semibold">Landing Variation 2</h4>
-                    </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.section>
 
           {/* Results */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
           >
-            <h2 className="text-3xl font-bold mb-8 text-[#F5A623]">Results & Impact</h2>
-            <div className="bg-gradient-to-br from-[#F5A623]/10 to-[#F5A623]/5 rounded-2xl p-8 border border-[#F5A623]/20">
-              <p className="text-lg leading-relaxed text-gray-200 mb-6">
-                Tryve's empathetic design approach successfully addresses the barriers to mental health care access. 
-                The platform creates a safe, trustworthy environment that encourages users to seek help and 
+            <h2 className="text-3xl font-bold mb-6 text-[#1A1A1A]">Results & Impact</h2>
+            <div className="bg-white rounded-2xl p-8 border border-[#C8703A]/20 shadow-sm">
+              <p className="text-base leading-relaxed text-[#444] mb-8">
+                Tryve's empathetic design approach successfully addresses the barriers to mental health care access.
+                The platform creates a safe, trustworthy environment that encourages users to seek help and
                 maintains long-term therapeutic relationships.
               </p>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#F5A623] mb-2">92%</div>
-                  <div className="text-gray-300">User trust rating in usability tests</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#F5A623] mb-2">65%</div>
-                  <div className="text-gray-300">Reduction in time to find therapist</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#F5A623] mb-2">4.8/5</div>
-                  <div className="text-gray-300">Average user satisfaction score</div>
-                </div>
+                {[
+                  { value: "92%", label: "User trust rating in usability tests" },
+                  { value: "65%", label: "Reduction in time to find therapist" },
+                  { value: "4.8/5", label: "Average user satisfaction score" },
+                ].map((stat, i) => (
+                  <div key={i} className="text-center p-4 bg-[#F2EEE9] rounded-xl">
+                    <div className="text-2xl font-bold text-[#C8703A] mb-1">{stat.value}</div>
+                    <div className="text-[#666] text-sm">{stat.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.section>
+
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="py-8 border-t border-white/10 mt-16">
+      <footer className="py-8 border-t border-[#E2DDD6] mt-16 bg-[#F8F7F4]">
         <div className="container mx-auto px-6 text-center">
-          <p className="text-gray-400 text-sm">© 2025 Abigail Wagura. All rights reserved.</p>
+          <p className="text-[#AAA] text-xs">© 2025 Abigail Wagura. All rights reserved.</p>
         </div>
       </footer>
     </div>

@@ -4,10 +4,7 @@ import { ChevronLeft, ChevronRight, ExternalLink, Users, Clock, Target, ArrowLef
 import { useNavigate } from 'react-router-dom'
 import Novelnest from '../../assets/Novelnest.png'
 
-// Complete design images data with all your images
 const designImages = [
- 
-  // iPhone 14 & 15 Pro Max Series
   { src: "/NOVEL APP (1)/iPhone 14 & 15 Pro Max - 39.png", title: "Welcome Screen", description: "App introduction and onboarding", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 14 & 15 Pro Max - 40.png", title: "Sign Up Flow", description: "User registration process", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 14 & 15 Pro Max - 41.png", title: "Login Interface", description: "Secure user authentication", category: "Mobile" },
@@ -22,7 +19,6 @@ const designImages = [
   { src: "/NOVEL APP (1)/iPhone 14 & 15 Pro Max - 52.png", title: "Reading Goals", description: "Set and track reading objectives", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 14 & 15 Pro Max - 53.png", title: "Community Features", description: "Connect with fellow readers", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 14 & 15 Pro Max - 54.png", title: "Settings Panel", description: "Customize app preferences", category: "Mobile" },
-  // iPhone 16 Plus Series
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 1.png", title: "Main Dashboard", description: "Enhanced mobile home experience", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 2.png", title: "Book Browse", description: "Swipe through recommendations", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 3.png", title: "Reading Stats", description: "Detailed progress analytics", category: "Mobile" },
@@ -33,7 +29,7 @@ const designImages = [
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 8.png", title: "Book Info Mobile", description: "Mobile-optimized book details", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 9.png", title: "Reading Mode", description: "Distraction-free reading interface", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 10.png", title: "Reading Settings", description: "Customize reading experience", category: "Mobile" },
-  { src: "/NOVEL APP (1)/iPhone 16 Plus - 11.png", title: "Bookmarks", description: "Save and organize favorite passages", category: "Mobile" },
+  { src: "/NOVEL APP (1)/iPhone 16 Plus - 11.png", title: "Bookmarks", description: "Save and organize favourite passages", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 12.png", title: "Notes & Highlights", description: "Personal reading annotations", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 13.png", title: "Social Features", description: "Share and discuss with friends", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 14.png", title: "Reading Challenges", description: "Join community reading events", category: "Mobile" },
@@ -47,82 +43,61 @@ const designImages = [
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 22.png", title: "Recommendation Engine", description: "AI-powered book suggestions", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 23.png", title: "Offline Reading", description: "Download books for offline access", category: "Mobile" },
   { src: "/NOVEL APP (1)/iPhone 16 Plus - 24.png", title: "Audio Integration", description: "Switch between reading and listening", category: "Mobile" },
-  { src: "/NOVEL APP (1)/iPhone 16 Plus - 25.png", title: "Support & Help", description: "User assistance and FAQs", category: "Mobile" }
+  { src: "/NOVEL APP (1)/iPhone 16 Plus - 25.png", title: "Support & Help", description: "User assistance and FAQs", category: "Mobile" },
 ]
 
-// Enhanced Carousel Component with auto-movement
 const EnhancedDesignCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [filter, setFilter] = useState('All')
   const [isPlaying, setIsPlaying] = useState(true)
   const [isPaused, setIsPaused] = useState(false)
 
-  const filteredImages = filter === 'All' 
-    ? designImages 
-    : designImages.filter(img => img.category === filter)
+  const filteredImages = filter === 'All' ? designImages : designImages.filter(img => img.category === filter)
 
-  // Auto-advance carousel
   useEffect(() => {
     if (!isPlaying || isPaused) return
-
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % filteredImages.length)
-    }, 4000) // Change slide every 4 seconds
-
+    }, 4000)
     return () => clearInterval(interval)
   }, [isPlaying, isPaused, filteredImages.length])
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % filteredImages.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length)
-  }
-
+  const nextSlide = () => setCurrentIndex((prev) => (prev + 1) % filteredImages.length)
+  const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length)
   const goToSlide = (index) => {
     setCurrentIndex(index)
     setIsPaused(true)
-    setTimeout(() => setIsPaused(false), 3000) // Resume after 3 seconds
+    setTimeout(() => setIsPaused(false), 3000)
   }
-
-  const togglePlayPause = () => {
-    setIsPlaying(!isPlaying)
-  }
-
+  const togglePlayPause = () => setIsPlaying(!isPlaying)
   const currentImage = filteredImages[currentIndex]
 
   return (
     <div className="relative">
-      {/* Filter and Control Buttons */}
-      <div className="flex justify-between items-center mb-8">
-        <div className="flex gap-4">
-          {['All', 'Desktop', 'Mobile'].map((category) => (
+      {/* Filter and Controls */}
+      <div className="flex justify-between items-center mb-8 flex-wrap gap-4">
+        <div className="flex gap-3 flex-wrap">
+          {['All', 'Mobile'].map((category) => (
             <motion.button
               key={category}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                setFilter(category)
-                setCurrentIndex(0)
-              }}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+              onClick={() => { setFilter(category); setCurrentIndex(0) }}
+              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 filter === category
-                  ? 'bg-[#F5A623] text-black'
-                  : 'bg-white/10 text-white hover:bg-white/20'
+                  ? 'bg-[#C8703A] text-white shadow-sm'
+                  : 'bg-white border border-[#E2DDD6] text-[#555] hover:border-[#C8703A] hover:text-[#C8703A]'
               }`}
             >
-              {category} {filter === category && `(${filteredImages.length})`}
+              {category}{filter === category && ` (${filteredImages.length})`}
             </motion.button>
           ))}
         </div>
-
-        {/* Play/Pause Button */}
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={togglePlayPause}
-          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5A623] text-black font-medium"
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A1A1A] text-white text-sm font-semibold hover:bg-[#C8703A] transition-colors"
         >
           {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
           {isPlaying ? 'Pause' : 'Play'}
@@ -130,35 +105,16 @@ const EnhancedDesignCarousel = () => {
       </div>
 
       {/* Main Carousel */}
-      <div 
-        className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-8 border border-white/10 overflow-hidden"
+      <div
+        className="relative bg-white rounded-2xl border border-[#E8E4DF] shadow-sm overflow-hidden p-8"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Navigation Arrows */}
-        <motion.button
-          whileHover={{ scale: 1.1, x: -2 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={prevSlide}
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-[#F5A623] text-black flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300"
-        >
-          <ChevronLeft className="w-7 h-7" />
-        </motion.button>
-
-        <motion.button
-          whileHover={{ scale: 1.1, x: 2 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={nextSlide}
-          className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-[#F5A623] text-black flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300"
-        >
-          <ChevronRight className="w-7 h-7" />
-        </motion.button>
-
         {/* Progress Bar */}
-        <div className="absolute top-4 left-8 right-8 z-10">
-          <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 z-10">
+          <div className="w-full h-1 bg-[#E8E4DF]">
             <motion.div
-              className="h-full bg-[#F5A623]"
+              className="h-full bg-[#C8703A]"
               initial={{ width: '0%' }}
               animate={{ width: `${((currentIndex + 1) / filteredImages.length) * 100}%` }}
               transition={{ duration: 0.3 }}
@@ -166,95 +122,82 @@ const EnhancedDesignCarousel = () => {
           </div>
         </div>
 
-        {/* Image Display with Enhanced Presentation */}
-        <div className="relative h-[700px] flex items-center justify-center">
+        <motion.button
+          whileHover={{ scale: 1.1, x: -2 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#1A1A1A] text-white flex items-center justify-center shadow-lg hover:bg-[#C8703A] transition-colors"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.1, x: 2 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-[#1A1A1A] text-white flex items-center justify-center shadow-lg hover:bg-[#C8703A] transition-colors"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </motion.button>
+
+        <div className="relative h-[600px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={`${filter}-${currentIndex}`}
-              initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              exit={{ opacity: 0, scale: 0.8, rotateY: -90 }}
-              transition={{ 
-                duration: 0.8, 
-                ease: "easeInOut",
-                rotateY: { duration: 0.6 }
-              }}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
               className="relative max-w-full max-h-full flex items-center justify-center"
             >
-              <div className="relative">
-                <img
-                  src={currentImage?.src}
-                  alt={currentImage?.title}
-                  className={`rounded-3xl shadow-2xl object-contain transition-all duration-300 ${
-                    currentImage?.category === 'Mobile' 
-                      ? 'max-h-[600px] w-auto' 
-                      : 'max-w-full max-h-[600px]'
-                  }`}
-                />
-                {/* Glowing effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#F5A623]/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-              </div>
+              <img
+                src={currentImage?.src}
+                alt={currentImage?.title}
+                className="rounded-xl shadow-lg object-contain max-h-[540px] w-auto"
+              />
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Enhanced Image Info */}
-        <motion.div 
+        <motion.div
           key={`info-${currentIndex}`}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          className="text-center mt-8"
+          transition={{ delay: 0.2, duration: 0.4 }}
+          className="text-center mt-6"
         >
-          <div className="max-w-2xl mx-auto">
-            <h3 className="text-3xl font-bold text-[#F5A623] mb-3">
-              {currentImage?.title}
-            </h3>
-            <p className="text-gray-300 text-lg mb-4 leading-relaxed">
-              {currentImage?.description}
-            </p>
-            <div className="flex items-center justify-center gap-4">
-              <span className="inline-block px-4 py-2 bg-[#F5A623]/20 text-[#F5A623] rounded-full text-sm font-medium border border-[#F5A623]/30">
-                {currentImage?.category}
-              </span>
-              <span className="text-gray-400 text-sm">
-                Screen {currentIndex + 1} of {filteredImages.length}
-              </span>
-            </div>
+          <h3 className="text-xl font-bold text-[#1A1A1A] mb-1">{currentImage?.title}</h3>
+          <p className="text-[#666] text-sm mb-3">{currentImage?.description}</p>
+          <div className="flex items-center justify-center gap-3">
+            <span className="inline-block px-3 py-1 bg-[#C8703A]/10 text-[#C8703A] rounded-full text-xs font-semibold border border-[#C8703A]/20">
+              {currentImage?.category}
+            </span>
+            <span className="text-[#AAA] text-xs">Screen {currentIndex + 1} of {filteredImages.length}</span>
           </div>
         </motion.div>
       </div>
 
-      {/* Enhanced Thumbnail Navigation */}
-      <div className="mt-8">
-        <div className="flex justify-center gap-3 flex-wrap max-w-6xl mx-auto">
+      {/* Thumbnails */}
+      <div className="mt-6">
+        <div className="flex justify-center gap-2 flex-wrap max-w-6xl mx-auto">
           {filteredImages.map((image, index) => (
             <motion.button
               key={index}
-              whileHover={{ scale: 1.1, y: -2 }}
+              whileHover={{ scale: 1.08, y: -2 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => goToSlide(index)}
-              className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
-                index === currentIndex 
-                  ? 'border-[#F5A623] shadow-lg shadow-[#F5A623]/30 ring-2 ring-[#F5A623]/20' 
-                  : 'border-white/20 hover:border-white/50'
+              className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                index === currentIndex
+                  ? 'border-[#C8703A] shadow-md ring-2 ring-[#C8703A]/20'
+                  : 'border-[#E8E4DF] hover:border-[#C8703A]/50'
               }`}
             >
-              <img
-                src={image.src}
-                alt={image.title}
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-              />
+              <img src={image.src} alt={image.title} className="w-full h-full object-cover" />
               {index === currentIndex && (
-                <motion.div 
-                  layoutId="activeIndicator"
-                  className="absolute inset-0 bg-[#F5A623]/30 flex items-center justify-center"
-                >
-                  <div className="w-2 h-2 bg-[#F5A623] rounded-full" />
-                </motion.div>
+                <div className="absolute inset-0 bg-[#C8703A]/20 flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 bg-[#C8703A] rounded-full" />
+                </div>
               )}
-              {/* Thumbnail number */}
-              <div className="absolute bottom-0 right-0 bg-black/70 text-white text-xs px-1 rounded-tl">
+              <div className="absolute bottom-0 right-0 bg-[#1A1A1A]/70 text-white text-[10px] px-1 rounded-tl">
                 {index + 1}
               </div>
             </motion.button>
@@ -262,12 +205,11 @@ const EnhancedDesignCarousel = () => {
         </div>
       </div>
 
-      {/* Auto-play indicator */}
       {isPlaying && (
         <div className="text-center mt-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full text-sm text-gray-400">
-            <div className="w-2 h-2 bg-[#F5A623] rounded-full animate-pulse" />
-            Auto-playing • Next in {isPaused ? 'paused' : '4s'}
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F2EEE9] rounded-full text-xs text-[#888]">
+            <div className="w-1.5 h-1.5 bg-[#C8703A] rounded-full animate-pulse" />
+            Auto-playing · {isPaused ? 'paused' : 'next in 4s'}
           </div>
         </div>
       )}
@@ -279,113 +221,84 @@ export default function NovelNestCaseStudy() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-[#3A3A3A] text-white">
+    <div className="min-h-screen bg-[#F8F7F4] text-[#1A1A1A] font-sans">
       {/* Navigation */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 bg-[#3A3A3A]/95 backdrop-blur-md border-b border-white/10"
+        className="fixed top-0 left-0 right-0 z-50 bg-[#F8F7F4]/95 backdrop-blur-md border-b border-[#E2DDD6]"
       >
-        <div className="container mx-auto px-6 py-5 flex items-center justify-between">
-          <motion.div 
-            whileHover={{ scale: 1.05 }} 
-            className="text-xl font-bold tracking-tight cursor-pointer"
+        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            className="text-lg font-bold tracking-tight text-[#1A1A1A] cursor-pointer"
             onClick={() => navigate('/')}
           >
-            PORTFO<span className="text-[#F5A623]">//</span>IO
+            PORTFO<span className="text-[#C8703A]">//</span>IO
           </motion.div>
-          
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <motion.button
-              whileHover={{ scale: 1.05, x: -5 }}
+              whileHover={{ scale: 1.05, x: -3 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate(-1)}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-full border border-[#E2DDD6] bg-white text-[#555] text-sm font-medium hover:border-[#C8703A] hover:text-[#C8703A] transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm font-medium">Back</span>
+              Back
             </motion.button>
-            
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/')}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5A623] text-black hover:bg-[#F5A623]/90 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#1A1A1A] text-white text-sm font-semibold hover:bg-[#C8703A] transition-colors"
             >
               <Home className="w-4 h-4" />
-              <span className="text-sm font-medium">Home</span>
+              Home
             </motion.button>
           </div>
         </div>
       </motion.nav>
 
-      {/* Main Content */}
       <main className="pt-20">
         <div className="container mx-auto px-6 py-16">
-          {/* Hero Section */}
+
+          {/* Hero */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <motion.h1
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-5xl md:text-6xl font-bold mb-6 leading-tight"
-                >
-                  Novel Nest
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-xl text-gray-300 mb-8 leading-relaxed"
-                >
+                <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#C8703A] mb-3">Case Study</p>
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-[#1A1A1A]">Novel Nest</h1>
+                <p className="text-lg text-[#555] mb-8 leading-relaxed">
                   A modern web design for book lovers featuring a clean, intuitive interface that makes discovering and organizing your next great read effortless.
-                </motion.p>
-                {/* <motion.a
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  href="https://www.figma.com/design/RhrJeDqmiLx0Yna6EX6etR/NOVEL-APP?node-id=0-1&t=szf0ldSPlAFWX4m4-1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#F5A623] text-black font-semibold rounded-lg hover:bg-[#F5A623]/90 transition-colors"
-                >
-                  View Figma Design
-                  <ExternalLink className="w-4 h-4" />
-                </motion.a> */}
+                </p>
               </div>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative"
+                transition={{ duration: 0.7, delay: 0.3 }}
               >
-                <img
-                  src={Novelnest}
-                  alt="Novel Nest Design"
-                  className="w-full rounded-2xl shadow-2xl"
-                />
+                <img src={Novelnest} alt="Novel Nest Design" className="w-full rounded-2xl shadow-lg border border-[#E8E4DF]" />
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Enhanced Design Showcase Carousel */}
+          {/* Carousel */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-4xl font-bold mb-4 text-[#F5A623] text-center">Complete Design Showcase</h2>
-            <p className="text-center text-gray-300 mb-12 text-lg">
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-[#C8703A] mb-2 text-center">Design Showcase</p>
+            <h2 className="text-3xl font-bold mb-2 text-[#1A1A1A] text-center">Complete Design Showcase</h2>
+            <p className="text-center text-[#777] mb-10 text-base">
               Explore all {designImages.length} screens from the Novel Nest design system
             </p>
             <EnhancedDesignCarousel />
@@ -393,42 +306,39 @@ export default function NovelNestCaseStudy() {
 
           {/* Project Details */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid md:grid-cols-3 gap-8 mb-20"
-          >
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-              <Users className="w-8 h-8 text-[#F5A623] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Target Users</h3>
-              <p className="text-gray-300">Book enthusiasts, casual readers, and literature students</p>
-            </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-              <Clock className="w-8 h-8 text-[#F5A623] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">Timeline</h3>
-              <p className="text-gray-300">3 weeks design sprint</p>
-            </div>
-            <div className="bg-white/5 rounded-xl p-6 border border-white/10">
-              <Target className="w-8 h-8 text-[#F5A623] mb-4" />
-              <h3 className="text-lg font-semibold mb-2">My Role</h3>
-              <p className="text-gray-300">UI/UX Designer, User Research</p>
-            </div>
-          </motion.div>
-
-          {/* Problem Statement */}
-          <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
+            className="grid md:grid-cols-3 gap-6 mb-20"
+          >
+            {[
+              { Icon: Users, title: "Target Users", text: "Book enthusiasts, casual readers, and literature students" },
+              { Icon: Clock, title: "Timeline", text: "3 weeks design sprint" },
+              { Icon: Target, title: "My Role", text: "UI/UX Designer, User Research" },
+            ].map(({ Icon, title, text }, i) => (
+              <div key={i} className="bg-white rounded-xl p-6 border border-[#E8E4DF] shadow-sm">
+                <Icon className="w-7 h-7 text-[#C8703A] mb-3" />
+                <h3 className="text-base font-semibold mb-1 text-[#1A1A1A]">{title}</h3>
+                <p className="text-[#666] text-sm">{text}</p>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Problem */}
+          <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-8 text-[#F5A623]">The Problem</h2>
-            <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-2xl p-8 border border-white/10">
-              <p className="text-lg leading-relaxed text-gray-200">
-                Book lovers often struggle with fragmented reading experiences across multiple platforms. 
-                Existing book discovery apps lack personalization, have cluttered interfaces, and don't 
-                provide a seamless way to track reading progress, manage collections, and connect with 
+            <h2 className="text-3xl font-bold mb-6 text-[#1A1A1A]">The Problem</h2>
+            <div className="bg-white rounded-2xl p-8 border border-[#E8E4DF] shadow-sm">
+              <p className="text-base leading-relaxed text-[#444]">
+                Book lovers often struggle with fragmented reading experiences across multiple platforms.
+                Existing book discovery apps lack personalization, have cluttered interfaces, and don't
+                provide a seamless way to track reading progress, manage collections, and connect with
                 fellow readers in a meaningful way.
               </p>
             </div>
@@ -436,87 +346,64 @@ export default function NovelNestCaseStudy() {
 
           {/* Solution */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-8 text-[#F5A623]">The Solution</h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className="text-lg leading-relaxed text-gray-200 mb-6">
-                  Novel Nest provides a unified, elegant platform that combines book discovery, 
-                  progress tracking, and community features in one beautifully designed interface. 
-                  The app focuses on simplicity while offering powerful personalization features.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Personalized book recommendations</span>
+            <h2 className="text-3xl font-bold mb-6 text-[#1A1A1A]">The Solution</h2>
+            <div className="grid md:grid-cols-2 gap-10 items-start">
+              <p className="text-base leading-relaxed text-[#444]">
+                Novel Nest provides a unified, elegant platform that combines book discovery,
+                progress tracking, and community features in one beautifully designed interface.
+                The app focuses on simplicity while offering powerful personalization features.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Personalized book recommendations",
+                  "Clean, distraction-free reading interface",
+                  "Smart progress tracking and goals",
+                  "Community features for book discussions",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 p-4 bg-white rounded-lg border border-[#E8E4DF]">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#C8703A] mt-2 flex-shrink-0" />
+                    <span className="text-[#444] text-sm">{item}</span>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Clean, distraction-free reading interface</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Smart progress tracking and goals</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] mt-2 flex-shrink-0"></div>
-                    <span className="text-gray-300">Community features for book discussions</span>
-                  </li>
-                </ul>
-              </div>
+                ))}
+              </ul>
             </div>
           </motion.section>
 
           {/* Design Process */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-12 text-[#F5A623]">Design Process</h2>
+            <h2 className="text-3xl font-bold mb-10 text-[#1A1A1A]">Design Process</h2>
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                {
-                  step: "01",
-                  title: "Research",
-                  description: "User interviews with book enthusiasts to understand pain points"
-                },
-                {
-                  step: "02", 
-                  title: "Ideation",
-                  description: "Sketching and wireframing key user flows and features"
-                },
-                {
-                  step: "03",
-                  title: "Design",
-                  description: "Creating high-fidelity mockups with focus on typography and readability"
-                },
-                {
-                  step: "04",
-                  title: "Testing",
-                  description: "Usability testing and iteration based on user feedback"
-                }
+                { step: "01", title: "Research", description: "User interviews with book enthusiasts to understand pain points" },
+                { step: "02", title: "Ideation", description: "Sketching and wireframing key user flows and features" },
+                { step: "03", title: "Design", description: "Creating high-fidelity mockups with focus on typography and readability" },
+                { step: "04", title: "Testing", description: "Usability testing and iteration based on user feedback" },
               ].map((phase, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
                   className="text-center"
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#F5A623] text-black font-bold text-xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-14 h-14 rounded-full bg-[#1A1A1A] text-white font-bold text-base flex items-center justify-center mx-auto mb-3 hover:bg-[#C8703A] transition-colors">
                     {phase.step}
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{phase.title}</h3>
-                  <p className="text-gray-300 text-sm">{phase.description}</p>
+                  <h3 className="text-sm font-semibold mb-1 text-[#1A1A1A]">{phase.title}</h3>
+                  <p className="text-[#777] text-xs leading-relaxed">{phase.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -524,42 +411,30 @@ export default function NovelNestCaseStudy() {
 
           {/* Key Features */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-12 text-[#F5A623]">Key Features</h2>
-            <div className="space-y-8">
+            <h2 className="text-3xl font-bold mb-8 text-[#1A1A1A]">Key Features</h2>
+            <div className="space-y-4">
               {[
-                {
-                  title: "Smart Discovery",
-                  description: "AI-powered recommendations based on reading history, genres, and community ratings"
-                },
-                {
-                  title: "Reading Progress",
-                  description: "Visual progress tracking with reading goals, streaks, and milestone celebrations"
-                },
-                {
-                  title: "Personal Library",
-                  description: "Organize books into custom shelves with tags, ratings, and personal notes"
-                },
-                {
-                  title: "Community Hub",
-                  description: "Join book clubs, participate in discussions, and share reviews with fellow readers"
-                }
+                { title: "Smart Discovery", description: "AI-powered recommendations based on reading history, genres, and community ratings" },
+                { title: "Reading Progress", description: "Visual progress tracking with reading goals, streaks, and milestone celebrations" },
+                { title: "Personal Library", description: "Organize books into custom shelves with tags, ratings, and personal notes" },
+                { title: "Community Hub", description: "Join book clubs, participate in discussions, and share reviews with fellow readers" },
               ].map((feature, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="bg-white/5 rounded-xl p-6 border border-white/10"
+                  transition={{ duration: 0.5, delay: i * 0.07 }}
+                  className="bg-white rounded-xl p-6 border border-[#E8E4DF] shadow-sm"
                 >
-                  <h3 className="text-xl font-semibold mb-3 text-[#F5A623]">{feature.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">{feature.description}</p>
+                  <h3 className="text-base font-semibold mb-2 text-[#C8703A]">{feature.title}</h3>
+                  <p className="text-[#555] text-sm leading-relaxed">{feature.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -567,41 +442,39 @@ export default function NovelNestCaseStudy() {
 
           {/* Results */}
           <motion.section
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
           >
-            <h2 className="text-3xl font-bold mb-8 text-[#F5A623]">Results & Impact</h2>
-            <div className="bg-gradient-to-br from-[#F5A623]/10 to-[#F5A623]/5 rounded-2xl p-8 border border-[#F5A623]/20">
-              <p className="text-lg leading-relaxed text-gray-200 mb-6">
-                The Novel Nest design successfully addresses the core problems of book discovery and 
-                reading management through a user-centered approach. The clean, intuitive interface 
+            <h2 className="text-3xl font-bold mb-6 text-[#1A1A1A]">Results & Impact</h2>
+            <div className="bg-white rounded-2xl p-8 border border-[#C8703A]/20 shadow-sm">
+              <p className="text-base leading-relaxed text-[#444] mb-8">
+                The Novel Nest design successfully addresses the core problems of book discovery and
+                reading management through a user-centered approach. The clean, intuitive interface
                 reduces cognitive load while powerful features enhance the reading experience.
               </p>
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#F5A623] mb-2">95%</div>
-                  <div className="text-gray-300">User satisfaction in testing</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#F5A623] mb-2">40%</div>
-                  <div className="text-gray-300">Faster book discovery</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-[#F5A623] mb-2">3x</div>
-                  <div className="text-gray-300">More engagement with reading goals</div>
-                </div>
+                {[
+                  { value: "95%", label: "User satisfaction in testing" },
+                  { value: "40%", label: "Faster book discovery" },
+                  { value: "3×", label: "More engagement with reading goals" },
+                ].map((stat, i) => (
+                  <div key={i} className="text-center p-4 bg-[#F2EEE9] rounded-xl">
+                    <div className="text-2xl font-bold text-[#C8703A] mb-1">{stat.value}</div>
+                    <div className="text-[#666] text-sm">{stat.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.section>
+
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="py-8 border-t border-white/10 mt-16">
+      <footer className="py-8 border-t border-[#E2DDD6] mt-16 bg-[#F8F7F4]">
         <div className="container mx-auto px-6 text-center">
-          <p className="text-gray-400 text-sm">© 2025 Abigail Wagura. All rights reserved.</p>
+          <p className="text-[#AAA] text-xs">© 2025 Abigail Wagura. All rights reserved.</p>
         </div>
       </footer>
     </div>

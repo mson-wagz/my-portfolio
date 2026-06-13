@@ -7,7 +7,7 @@ export default function CaseStudyLayout() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-[#3A3A3A] text-white">
+    <div className="min-h-screen bg-[#F8F7F4] text-[#1A1A1A]">
       {/* Navigation */}
       <motion.nav
         initial={{ y: -100 }}

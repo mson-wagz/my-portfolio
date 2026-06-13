@@ -550,7 +550,18 @@ export default function Portfolio() {
                       <h3 className="text-xl sm:text-2xl font-bold text-[#1A1A1A] group-hover:text-[#C8703A] transition-colors">
                         {project.title}
                       </h3>
-                      {(project.slug || project.category === "web") && (
+                      <motion.a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.12, rotate: -45 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="w-9 h-9 rounded-full bg-[#1A1A1A] flex items-center justify-center flex-shrink-0 hover:bg-[#C8703A] transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ArrowRight className="w-4 h-4 text-white" />
+                        </motion.a>
+                      {/* {(project.slug || project.category === "web" ) && (
                         <motion.a
                           href={project.category === "web" ? project.link : undefined}
                           target={project.category === "web" ? "_blank" : "_self"}
@@ -563,6 +574,19 @@ export default function Portfolio() {
                           <ArrowRight className="w-4 h-4 text-white" />
                         </motion.a>
                       )}
+                      {(project.slug || project.category === "ui-ux" ) && (
+                        <motion.a
+                          href={project.category === "ui-ux" ? project.link : undefined}
+                          target={project.category === "ui-ux" ? "_blank" : "_self"}
+                          rel={project.category === "ui-ux" ? "noopener noreferrer" : undefined}
+                          whileHover={{ scale: 1.12, rotate: -45 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="w-9 h-9 rounded-full bg-[#1A1A1A] flex items-center justify-center flex-shrink-0 hover:bg-[#C8703A] transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ArrowRight className="w-4 h-4 text-white" />
+                        </motion.a>
+                      )} */}
                     </div>
 
                     <p className="text-[#666] text-sm sm:text-base leading-relaxed mb-4">{project.description}</p>

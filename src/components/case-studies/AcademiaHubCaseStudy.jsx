@@ -8,7 +8,7 @@ export default function AcademiaHubCaseStudy() {
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen bg-[#3A3A3A] text-white">
+    <div className="mmin-h-screen bg-[#F8F7F4] text-[#1A1A1A] font-sans">
       {/* Navigation */}
       <motion.nav
         initial={{ y: -100 }}
