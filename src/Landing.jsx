@@ -10,6 +10,9 @@ import EduLearn from './assets/Edulearn.png'
 import AfyaBuddy from './assets/AfyaBuddy.png'
 import MwanafunziHub from './assets/MwanafunziHub.png'
 import Tiklish from './assets/Tiklish.png'
+import Remindly from './assets/Remindly.png'
+import Etho from './assets/Etho.png'
+import Restovoice from './assets/Restovoice.png'
 
 import { useState, useEffect, useRef } from "react"
 // eslint-disable-next-line no-unused-vars
@@ -17,7 +20,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ArrowRight, Linkedin, Github, Dribbble, Mail, CheckCircle, XCircle, Send, Menu, X } from "lucide-react"
+import { ArrowRight, Linkedin, Github, Dribbble, Mail, CheckCircle, XCircle, Send, Menu, X, ExternalLink } from "lucide-react"
 import { Link } from "react-router-dom"
 
 
@@ -87,6 +90,8 @@ export default function Portfolio() {
     { number: "05", title: "QA Testing", description: "Comprehensive testing to guarantee reliability, usability, and seamless experiences." },
   ]
 
+  // NOTE: `link` = live/deployed site, `github` = source repo, `slug` = internal case-study route,
+  // `externalLink` = Figma (or similar) design file link.
   const projects = [
     {
       title: "Novel Nest",
@@ -123,18 +128,46 @@ export default function Portfolio() {
       category: "ui-ux",
       slug: "tiklish"
     },
+
+    {
+      title: "Restovoice",
+      description: "AI-powered voice agent that answers calls 24/7, completes reservations instantly, and secures deposits. Your restaurant never sleeps.",
+      img: Restovoice,
+      link: "https://ai-voicebooker.onrender.com/main",
+      github: "https://github.com/mson-wagz/AI-voicebooker.git", // TODO: replace with the real repo URL
+      category: "web"
+    },
+    {
+      title: "Etho",
+      description: "A global marketplace for ethical commerce, built by women for women, with tools that help ethical brands manage and scale their business with intention.",
+      img: Etho,
+      link: "https://etho-frontend-nine.vercel.app/",
+      github: "https://github.com/mson-wagz/etho-frontend.git", // TODO: replace with the real repo URL
+      category: "web"
+    },
+    {
+      title: "Remindly",
+      description: "A WhatsApp scheduling tool that connects to your account and lets you queue messages to individual contacts, groups, or communities for any future date and time zone.",
+      img: Remindly,
+      link: "https://remindly-e2wz.vercel.app/",
+      github: "https://github.com/mson-wagz/remindly.git",
+      note: "Frontend is live , backend isn't deployed since it requires a paid WhatsApp Business API plan. Fork the repo to run it with your own credentials.", // TODO: replace with the real repo URL
+      category: "web"
+    },
     {
       title: "AfyaBuddy",
       description: "An AI-powered first aid assistant providing quick, step-by-step guidance during medical emergencies.",
       img: AfyaBuddy,
       link: "https://celadon-mousse-1866c3.netlify.app/",
+      github: "https://github.com/mson-wagz/afyabuddy", // TODO: replace with the real repo URL
       category: "web"
     },
     {
       title: "MwanafunziHub",
       description: "A comprehensive student portal designed to streamline academic management and enhance communication.",
       img: MwanafunziHub,
-      link: "https://mwanafunzi-hub-r1uq.onrender.com/",
+      link: "https://mwanafunzi-hub-frontend.vercel.app/",
+      github: "https://github.com/mson-wagz/mwanafunzi-hub-frontend.git", // TODO: replace with the real repo URL
       category: "web"
     }
   ]
@@ -541,20 +574,66 @@ export default function Portfolio() {
                       <h3 className="text-xl sm:text-2xl font-bold text-[#1A1A1A] group-hover:text-[#C8703A] transition-colors">
                         {project.title}
                       </h3>
-                      
                     </div>
 
                     <p className="text-[#666] text-sm sm:text-base leading-relaxed mb-4">{project.description}</p>
 
-                    {project.slug && (
-                      <Link
-                        to={project.link}
-                        className="inline-flex items-center gap-1.5 text-[#C8703A] text-sm font-semibold hover:gap-2.5 transition-all"
-                      >
-                        View Case Study
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </Link>
+                    {/* UI/UX projects: internal case-study route (React Router) + optional Figma link */}
+                    {project.category === "ui-ux" && (
+                      <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                        {project.slug && (
+                          <Link
+                            to={project.link}
+                            className="inline-flex items-center gap-1.5 text-[#C8703A] text-sm font-semibold hover:gap-2.5 transition-all"
+                          >
+                            View Case Study
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </Link>
+                        )}
+                        {project.externalLink && (
+                          <a
+                            href={project.externalLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[#1A1A1A] text-sm font-semibold hover:text-[#C8703A] transition-colors"
+                          >
+                            View on Figma
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        )}
+                      </div>
                     )}
+
+                    {/* Web projects: live site + GitHub repo, both real external links */}
+                    {project.category === "web" && (
+                      <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                        {project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[#C8703A] text-sm font-semibold hover:gap-2.5 transition-all"
+                          >
+                            View Live Site
+                            <ArrowRight className="w-3.5 h-3.5" />
+                          </a>
+                        )}
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-[#1A1A1A] text-sm font-semibold hover:text-[#C8703A] transition-colors"
+                          >
+                            <Github className="w-3.5 h-3.5" />
+                            View on GitHub
+                          </a>
+                        )}
+                      </div>
+                    )}
+                     {project.note && (
+                        <p className="text-xs text-[#999] italic">{project.note}</p>
+                      )}
                   </div>
                 </motion.div>
               ))}
