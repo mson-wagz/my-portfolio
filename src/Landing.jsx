@@ -13,6 +13,7 @@ import Tiklish from './assets/Tiklish.png'
 import Remindly from './assets/Remindly.png'
 import Etho from './assets/Etho.png'
 import Restovoice from './assets/Restovoice.png'
+import Tiklish2 from './assets/Tiklish2.png'
 
 import { useState, useEffect, useRef } from "react"
 // eslint-disable-next-line no-unused-vars
@@ -128,7 +129,31 @@ export default function Portfolio() {
       category: "ui-ux",
       slug: "tiklish"
     },
+    {
+      title: "Huduma-Home",
+      description: "An app that focuses on designing a telehealth experience that enables older adults to access and attend remote healthcare consultations.",
+      img: Tiklish2,
+      link: "https://drive.google.com/file/d/1OIGx33-G-wwowdBsS87xPwkjulrbbjU8/view?usp=drive_link",
+      category: "ui-ux",
+      slug: "huduma-home"
+    },
 
+    {
+      title: "Restovoice",
+      description: "AI-powered voice agent that answers calls 24/7, completes reservations instantly, and secures deposits. Your restaurant never sleeps.",
+      img: Restovoice,
+      link: "https://www.figma.com/design/IRWa8p65z9gRYcODMk2sK7/AI-Voice-Booker?node-id=0-1&t=vlSfP2m1CHSAv9R5-1",// TODO: replace with the real repo URL
+      category: "ui-ux",
+      slug: "restovoice"
+    },
+    {
+      title: "Learning-Management-System",
+      description: "Platform for managing bootcamps and schools — courses, student progress, and instructor tools.",
+      img: Restovoice,
+      link: "https://www.figma.com/design/2qmoODuKxnjnpL1nseXG4M/Data-Management-and-Collection-System-for-DirectEd-Development--Copy-?node-id=185-1893&t=wlbvR29Wy6zPbXzp-1",// TODO: replace with the real repo URL
+      category: "ui-ux",
+      slug: "Learning-management-system"
+    },
     {
       title: "Restovoice",
       description: "AI-powered voice agent that answers calls 24/7, completes reservations instantly, and secures deposits. Your restaurant never sleeps.",
