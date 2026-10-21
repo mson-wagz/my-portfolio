@@ -15,6 +15,7 @@ import Etho from './assets/Etho.png'
 import Restovoice from './assets/Restovoice.png'
 import Tiklish2 from './assets/Tiklish2.png'
 
+
 import { useState, useEffect, useRef } from "react"
 // eslint-disable-next-line no-unused-vars
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
@@ -128,6 +129,32 @@ export default function Portfolio() {
       link: "/case-study/tiklish",
       category: "ui-ux",
       slug: "tiklish"
+    },
+
+    {
+      title: "Restovoice",
+      description: "AI-powered voice agent that answers calls 24/7, completes reservations instantly, and secures deposits. Your restaurant never sleeps.",
+      img: Restovoice,
+      link: "https://ai-voicebooker.onrender.com/main",
+      github: "https://github.com/mson-wagz/AI-voicebooker.git", // TODO: replace with the real repo URL
+      category: "web"
+    },
+    {
+      title: "Etho",
+      description: "A global marketplace for ethical commerce, built by women for women, with tools that help ethical brands manage and scale their business with intention.",
+      img: Etho,
+      link: "https://etho-frontend-nine.vercel.app/",
+      github: "https://github.com/mson-wagz/etho-frontend.git", // TODO: replace with the real repo URL
+      category: "web"
+    },
+    {
+      title: "Remindly",
+      description: "A WhatsApp scheduling tool that connects to your account and lets you queue messages to individual contacts, groups, or communities for any future date and time zone.",
+      img: Remindly,
+      link: "https://remindly-e2wz.vercel.app/",
+      github: "https://github.com/mson-wagz/remindly.git",
+      note: "Frontend is live , backend isn't deployed since it requires a paid WhatsApp Business API plan. Fork the repo to run it with your own credentials.", // TODO: replace with the real repo URL
+      category: "web"
     },
     {
       title: "Huduma-Home",
